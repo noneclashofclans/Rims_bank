@@ -32,7 +32,10 @@ const transactionSchema = new mongoose.Schema({
         index: true,
         unique: true
     },
-    timestamps: true
+
+},
+{
+timestamp: true
 })
 
 const transactionModel = mongoose.model('transactionModel', transactionSchema);

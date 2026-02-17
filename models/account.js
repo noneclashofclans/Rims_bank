@@ -19,9 +19,11 @@ const accountSchema = new mongoose.Schema({
 
     currency: {
         type: String,
-        reuqired: [true, 'Currency is need to make a transaction'],
+        required: [true, 'Currency is need to make a transaction'],
         default: "INR"
     },
+},
+{
     timestamps: true
 })
 
@@ -30,7 +32,7 @@ accountSchema.index({user: 1, status: 1});
 
 accountSchema.methods.getBalance = async function () {
 
-    const balanceData = await ledgerModel.aggregate([
+    const balanceData = await ledgerSchema.aggregate([
         { $match: { account: this._id } },
         {
             $group: {
